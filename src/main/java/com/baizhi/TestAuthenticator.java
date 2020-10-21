@@ -22,8 +22,7 @@ public class TestAuthenticator {
         UsernamePasswordToken token = new UsernamePasswordToken("zs","123");
         try {
             System.out.println("认证状态"+subject.isAuthenticated());
-            //用户认证
-            subject.login(token);
+            subject.login(token);//用户认证
             System.out.println("认证状态"+subject.isAuthenticated());
         }catch (UnknownAccountException e){
             e.printStackTrace();
