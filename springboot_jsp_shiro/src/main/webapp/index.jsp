@@ -25,7 +25,7 @@
                     <shiro:hasPermission name="user:update:*">
                         <li><a href="">修改</a></li>
                     </shiro:hasPermission>
-                    <shiro:hasPermission name="user:find:*">
+                    <shiro:hasPermission name="order:find:*">
                         <li><a href="">查询</a></li>
                     </shiro:hasPermission>
                 </ul>
