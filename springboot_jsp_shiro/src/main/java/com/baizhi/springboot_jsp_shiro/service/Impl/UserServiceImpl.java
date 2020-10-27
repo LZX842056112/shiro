@@ -15,6 +15,12 @@ public class UserServiceImpl implements UserService {
     @Autowired(required = false)
     private UserDao userDao;
 
+    //根据用户名查询角色
+    @Override
+    public User findRolesByUserName(String username) {
+        return userDao.findRolesByUserName(username);
+    }
+
     //根据用户名查找用户
     @Override
     public User findByUserName(String username) {
