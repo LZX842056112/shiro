@@ -4,6 +4,7 @@ import com.baizhi.springboot_jsp_shiro.entity.Perms;
 import com.baizhi.springboot_jsp_shiro.entity.User;
 import com.baizhi.springboot_jsp_shiro.service.RoleService;
 import com.baizhi.springboot_jsp_shiro.service.UserService;
+import com.baizhi.springboot_jsp_shiro.shiro.salt.MyByteSource;
 import com.baizhi.springboot_jsp_shiro.utils.ApplicationContextUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -57,7 +58,7 @@ public class CustomerRealm extends AuthorizingRealm {
         UserService userService = (UserService) ApplicationContextUtils.getBean("userService");
         User user = userService.findByUserName(principal);
         if (!ObjectUtils.isEmpty(user)){
-            return new SimpleAuthenticationInfo(user.getUsername(),user.getPassword(), ByteSource.Util.bytes(user.getSalt()),this.getName());
+            return new SimpleAuthenticationInfo(user.getUsername(),user.getPassword(),new MyByteSource(user.getSalt()),this.getName());
         }
         return null;
     }

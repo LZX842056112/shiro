@@ -1,5 +1,6 @@
 package com.baizhi.springboot_jsp_shiro.config;
 
+import com.baizhi.springboot_jsp_shiro.shiro.cache.RedisCacheManager;
 import com.baizhi.springboot_jsp_shiro.shiro.realms.CustomerRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -53,7 +54,7 @@ public class ShiroConfig {
         credentialsMatcher.setHashIterations(1024);
         customerRealm.setCredentialsMatcher(credentialsMatcher);
         //开启缓存管理
-        customerRealm.setCacheManager(new EhCacheManager());
+        customerRealm.setCacheManager(new RedisCacheManager());
         customerRealm.setCachingEnabled(true);//全局缓存
         customerRealm.setAuthenticationCachingEnabled(true);//认证缓存
         customerRealm.setAuthenticationCacheName("authenticationCache");
