@@ -28,6 +28,7 @@ public class ShiroConfig {
         map.put("/user/login","anon");//anon 设置为公共资源
         map.put("/user/register","anon");//anon 设置为公共资源
         map.put("/register.jsp","anon");//anon 设置为公共资源
+        map.put("/user/getImage","anon");
         map.put("/**","authc");//authc 请求这个资源需要认证和授权
         //默认认证界面路径
         shiroFilterFactoryBean.setLoginUrl("/login.jsp");
