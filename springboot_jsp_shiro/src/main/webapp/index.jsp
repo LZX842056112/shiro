@@ -10,6 +10,13 @@
 </head>
 <body>
     <h1>系统主页V1.0</h1>
+    <h1><shiro:principal/></h1>
+    <shiro:authenticated>
+        认证之后展示<br/>
+    </shiro:authenticated>
+    <shiro:notAuthenticated>
+        没有认证之后展示<br/>
+    </shiro:notAuthenticated>
     <a href="${pageContext.request.contextPath}/user/logout">退出用户</a>
     <ul>
         <shiro:hasAnyRoles name="user,admin">
