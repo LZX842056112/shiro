@@ -16,18 +16,20 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`shiro` /*!40100 DEFAULT CHARACTER SET u
 
 USE `shiro`;
 
-/*Table structure for table `t_perds` */
+/*Table structure for table `t_perms` */
 
-DROP TABLE IF EXISTS `t_perds`;
+DROP TABLE IF EXISTS `t_perms`;
 
-CREATE TABLE `t_perds` (
+CREATE TABLE `t_perms` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(80) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-/*Data for the table `t_perds` */
+/*Data for the table `t_perms` */
+
+insert  into `t_perms`(`id`,`name`,`url`) values (1,'user:*','user/findAll'),(2,'product:*:01',NULL),(3,'order:*:*',NULL);
 
 /*Table structure for table `t_role` */
 
@@ -52,9 +54,11 @@ CREATE TABLE `t_role_perms` (
   `roleId` int(6) DEFAULT NULL,
   `permsId` int(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_role_perms` */
+
+insert  into `t_role_perms`(`id`,`roleId`,`permsId`) values (1,1,1),(2,1,2),(3,2,1),(4,3,2),(5,1,3);
 
 /*Table structure for table `t_user` */
 
@@ -67,11 +71,11 @@ CREATE TABLE `t_user` (
   `salt` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_user` */
 
-insert  into `t_user`(`id`,`username`,`password`,`salt`) values (1,'zs','0f776d546c09a76070847e383b1058ff','DpfK)r*I'),(2,'ls','881179c1152109e71cc284c1b22dd117','OnkM1%%O');
+insert  into `t_user`(`id`,`username`,`password`,`salt`) values (1,'zs','0f776d546c09a76070847e383b1058ff','DpfK)r*I'),(2,'ls','881179c1152109e71cc284c1b22dd117','OnkM1%%O'),(4,'ww','bca50e18ccdbb9ceb82fc97fb938b640','*j*)Z@aL');
 
 /*Table structure for table `t_user_role` */
 
