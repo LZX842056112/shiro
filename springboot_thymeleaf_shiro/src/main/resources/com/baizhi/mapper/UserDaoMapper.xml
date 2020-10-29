@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.UserDao">
+
+    <resultMap id="userMap" type="User">
+        <id column="uid" property="id"/>
+        <result column="username" property="username"/>
+        <!--角色信息-->
+        <collection property="roles" javaType="list" ofType="Role">
+            <id column="id" property="id"/>
+            <result column="rname" property="name"/>
+        </collection>
+    </resultMap>
+
+    <!--根据用户名查询角色-->
+    <select id="findRolesByUserName" parameterType="String" resultMap="userMap">
+        select u.id uid,u.username,r.id,r.name rname from t_user u
+        left join t_user_role ur on u.id=ur.userId
+        left join t_role r on r.id=ur.roleId
+        where u.username=#{username}
+    </select>
+
+    <!--添加用户-->
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user values(#{id},#{username},#{password},#{salt})
+    </insert>
+
+    <!--根据用户名查找用户-->
+    <select id="findByUserName" parameterType="java.lang.String" resultType="User">
+        select id,username,password,salt from t_user where username = #{username}
+    </select>
+
+</mapper>
